@@ -1,32 +1,30 @@
 package br.com.guilhermezanin.screenmatch.model;
 
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class  Episodio {
+public class Episodio {
     private Integer temporada;
     private String titulo;
     private Integer numeroEpisodio;
     private Double avaliacao;
-    private LocalDate datalLancamento;
+    private LocalDate dataLancamento;
 
-    public Episodio(Integer numerotemporada, DadosEpisodio dadosEpisodios) {
-        this.temporada = numerotemporada;
-        this.titulo = dadosEpisodios.titulo();
-        this.numeroEpisodio = dadosEpisodios.numero();
+    public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
+        this.temporada = numeroTemporada;
+        this.titulo = dadosEpisodio.titulo();
+        this.numeroEpisodio = dadosEpisodio.numero();
 
-        try{
-            this.avaliacao = Double.valueOf(dadosEpisodios.avaliacao());
-        }catch (NumberFormatException ex){
+        try {
+            this.avaliacao = Double.valueOf(dadosEpisodio.avaliacao());
+        } catch (NumberFormatException ex) {
             this.avaliacao = 0.0;
         }
 
-        try{
-            this.datalLancamento = LocalDate.parse(dadosEpisodios.dataLancamento());
-        }catch (DateTimeParseException ex){
-            this.datalLancamento = null;
+        try {
+            this.dataLancamento = LocalDate.parse(dadosEpisodio.dataLancamento());
+        } catch (DateTimeParseException ex) {
+            this.dataLancamento = null;
         }
     }
 
@@ -63,19 +61,19 @@ public class  Episodio {
     }
 
     public LocalDate getDataLancamento() {
-        return datalLancamento;
+        return dataLancamento;
     }
 
-    public void setDataLancamento(LocalDate datalLancamento) {
-        this.datalLancamento = datalLancamento;
+    public void setDataLancamento(LocalDate dataLancamento) {
+        this.dataLancamento = dataLancamento;
     }
 
     @Override
     public String toString() {
-        return  "temporada=" + temporada +
+        return "temporada=" + temporada +
                 ", titulo='" + titulo + '\'' +
                 ", numeroEpisodio=" + numeroEpisodio +
                 ", avaliacao=" + avaliacao +
-                ", datalLancamento=" + datalLancamento;
+                ", dataLancamento=" + dataLancamento ;
     }
 }
